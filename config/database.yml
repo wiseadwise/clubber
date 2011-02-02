@@ -1,0 +1,24 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: clubber
+  pool: 5
+  username: root
+  password: '123456'
+
+test:
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: clubber_test
+  pool: 5
+  username: root
+  password:
+
+production:
+  database: promzon_clubbe77
+  adapter: postgresql
+  host: postgresql0.locum.ru
+  username: promzon_clubbe77
+  password: goodgolly 
