@@ -1,11 +1,13 @@
 require 'qr_image'
 class Point < ActiveRecord::Base
+  before_create :set_visit_number
+  after_destroy :delete_code
 
-  def before_create
+  def set_visit_number
     self.visit_number = 0
   end
 
-  def after_destroy
+  def delete_code
     File.delete(self.qr_path) if File.exist?(self.qr_path)
   end
 
