@@ -17,8 +17,7 @@ test:
   password:
 
 production:
-  database: promzon_clubbe77
-  adapter: postgresql
-  host: postgresql0.locum.ru
-  username: promzon_clubbe77
-  password: goodgolly 
+  adapter: sqlite3
+  database: db/production
+  pool: 5
+  timeout: 5000
