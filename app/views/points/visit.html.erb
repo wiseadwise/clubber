@@ -1,7 +1,7 @@
 <% if @point %>
   Вы отсканировали код, размещенный по адресу <%= @point.address %>
   <br/><br/>
-  <%=raw @point.message.gsub(/\r/, '<br />') %>
+  <%=sanitize @point.message.gsub(/\r/, '<br />') %>
   <br/><br/>
   <% if @chance %>
     Код вашей скидки <%=  10000 + rand(10000) %>
