@@ -1,8 +1,9 @@
 class PointsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /points
   # GET /points.xml
   def index
-    @points = Point.all
+    @points = current_user.points
     @points = @points.sort {|x,y| y.visit_number <=> x.visit_number } if params[:sort]
 
     respond_to do |format|
@@ -14,8 +15,7 @@ class PointsController < ApplicationController
   # GET /points/1
   # GET /points/1.xml
   def show
-    @point = Point.find(params[:id])
-
+    @point = current_user.points.where(:id => params[:id]).first
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @point }
@@ -23,7 +23,7 @@ class PointsController < ApplicationController
   end
 
   def visit
-    @point = Point.find_by_id(params[:id])
+    @point = current_user.points.where(:id => params[:id]).first
     @point.visit! if @point
     @chance = rand(2) > 0
   end
@@ -31,8 +31,7 @@ class PointsController < ApplicationController
   # GET /points/new
   # GET /points/new.xml
   def new
-    @point = Point.new
-
+    @point = current_user.points.build
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @point }
@@ -41,13 +40,13 @@ class PointsController < ApplicationController
 
   # GET /points/1/edit
   def edit
-    @point = Point.find(params[:id])
+    @point = current_user.points.where(:id => params[:id]).first
   end
 
   # POST /points
   # POST /points.xml
   def create
-    @point = Point.new(params[:point])
+    @point = current_user.points.build(params[:point])
 
     respond_to do |format|
       if @point.save
@@ -64,7 +63,7 @@ class PointsController < ApplicationController
   # PUT /points/1
   # PUT /points/1.xml
   def update
-    @point = Point.find(params[:id])
+    @point = current_user.points.where(:id => params[:id]).first
 
     respond_to do |format|
       if @point.update_attributes(params[:point])
@@ -80,7 +79,7 @@ class PointsController < ApplicationController
   # DELETE /points/1
   # DELETE /points/1.xml
   def destroy
-    @point = Point.find(params[:id])
+    @point = current_user.points.where(:id => params[:id]).first
     @point.destroy
 
     respond_to do |format|

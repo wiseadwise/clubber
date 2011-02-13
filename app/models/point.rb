@@ -3,6 +3,8 @@ class Point < ActiveRecord::Base
   before_create :set_visit_number
   after_destroy :delete_code
 
+  belongs_to :user
+
   def set_visit_number
     self.visit_number = 0
   end
@@ -11,7 +13,7 @@ class Point < ActiveRecord::Base
     File.delete(self.qr_path) if File.exist?(self.qr_path)
   end
 
-  QR_IMAGES_DIR = File.join(RAILS_ROOT, 'public/qr')
+  QR_IMAGES_DIR = File.join(Rails.root, 'public/qr')
   QR_SIZE = 5
 
   def create_qr_image(request)

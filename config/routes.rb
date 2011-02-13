@@ -1,4 +1,6 @@
 Clubber::Application.routes.draw do
+  devise_for :users
+
   resources :points
   match 'p/v/:id' => 'points#visit'
 
