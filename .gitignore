@@ -6,4 +6,3 @@ config/environments/*
 public/qr/*
 *.swp
 config/database.yml
-
