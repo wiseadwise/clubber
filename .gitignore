@@ -1,8 +1,7 @@
 .bundle
-db/*
+db/*.sqlite
 log/*.log
 tmp/**/*
 config/environments/*
 public/qr/*
 *.swp
-config/database.yml
