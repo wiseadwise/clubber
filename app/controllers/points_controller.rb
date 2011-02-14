@@ -23,7 +23,7 @@ class PointsController < ApplicationController
   end
 
   def visit
-    @point = current_user.points.where(:id => params[:id]).first
+    @point = Point.where(:id => params[:id]).first
     @point.visit! if @point
     @chance = rand(2) > 0
   end
