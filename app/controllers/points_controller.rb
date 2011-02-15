@@ -23,6 +23,8 @@ class PointsController < ApplicationController
   end
 
   def visit
+    @unique = cookies[:visit] ? false : true
+    cookies[:visit] = true
     @point = Point.where(:id => params[:id]).first
     @point.visit! if @point
     @chance = rand(2) > 0
