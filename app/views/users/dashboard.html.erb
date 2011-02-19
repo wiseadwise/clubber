@@ -1,0 +1,5 @@
+<% @events.each do |e| %>
+  <p>
+  <%= link_to e.name, edit_event_path(e) %>
+  </p>
+<% end %>

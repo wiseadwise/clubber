@@ -1,9 +1,11 @@
 require 'qr_image'
 class Point < ActiveRecord::Base
+  validates :address, :uniqueness => true
   before_create :set_visit_number
   after_destroy :delete_code
 
   belongs_to :user
+  has_and_belongs_to_many :events
 
   def set_visit_number
     self.visit_number = 0

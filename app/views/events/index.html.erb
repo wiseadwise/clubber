@@ -1,0 +1,24 @@
+<h1>События</h1>
+
+<table>
+  <tr>
+    <th>Событие</th>
+    <th>Дата</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%= link_to event.name, event %></td>
+    <td><%= l event.event_date, :format => :short %></td>
+    <td><%= link_to 'Редактировать', edit_event_path(event) %></td>
+    <td><%= link_to 'Удалить', event, :confirm => 'Вы уверены?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Новое событие', new_event_path %>

@@ -2,6 +2,7 @@ Clubber::Application.routes.draw do
   devise_for :users
 
   resources :points
+  resources :events
   match 'p/v/:id' => 'points#visit'
 
   # The priority is based upon order of creation:
