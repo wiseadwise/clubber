@@ -12,6 +12,16 @@
 
 ActiveRecord::Schema.define(:version => 20110219172557) do
 
+  create_table "event_points", :force => true do |t|
+    t.integer  "event_id",                    :null => false
+    t.integer  "point_id",                    :null => false
+    t.integer  "visit_number", :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_points", ["event_id", "point_id"], :name => "index_event_points_on_event_id_and_point_id", :unique => true
+
   create_table "events", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -21,16 +31,8 @@ ActiveRecord::Schema.define(:version => 20110219172557) do
     t.datetime "updated_at"
   end
 
-  create_table "events_points", :id => false, :force => true do |t|
-    t.integer "event_id", :null => false
-    t.integer "point_id", :null => false
-  end
-
-  add_index "events_points", ["event_id", "point_id"], :name => "index_events_points_on_event_id_and_point_id", :unique => true
-
   create_table "points", :force => true do |t|
     t.string   "address"
-    t.integer  "visit_number"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "message"

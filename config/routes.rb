@@ -3,8 +3,10 @@ Clubber::Application.routes.draw do
 
   resources :points
   resources :events
-  match 'p/v/:id' => 'points#visit'
 
+  match 'p/v/:event_point_id' => 'events#visit_point'
+  delete 'events/delete_point/:id' => 'events#delete_point', :as => :delete_event_point
+  put 'events/add_point/:id' => 'events#add_point', :as => :add_event_point
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

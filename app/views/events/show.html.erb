@@ -1,25 +1,36 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Название:</b>
   <%= @event.name %>
+  <br/>
+  <b>Дата события:</b>
+  <%= l @event.event_date, :format => :short %>
 </p>
 
 <p>
-  <b>Description:</b>
-  <%= @event.description %>
+<table>
+<% @event.event_points.each do |p| %>
+  <tr>
+    <td><%= p.point.address %></td>
+    <td><%= p.visit_number %></td>
+    <td><%= link_to 'QR код', p.qr_url, :target => "_blank"%></td> 
+    <td><%= link_to '[x]', delete_event_point_url(:event_point_id => p.id) %></td>
+  </tr>
+<% end %>
+</table>
 </p>
+
+<% if @points.any? %>
+  <% form_tag(add_event_point_path) do %>
+    <%= select_tag "points", options_from_collection_for_select(@points, "id", "address") %>
+    <%= submit_tag 'Добавить место' %>
+  <% end %>
+<% end %>
 
 <p>
-  <b>Event date:</b>
-  <%= @event.event_date %>
+
 </p>
 
-<p>
-  <b>User:</b>
-  <%= @event.user_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Редактировать', edit_event_path(@event) %> |
+<%= link_to 'Назад', events_path %>

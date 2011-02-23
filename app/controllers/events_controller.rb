@@ -1,82 +1,67 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:visit_point]
+  before_filter :set_event
 
   def index
     @events = current_user.events.sort_by(&:event_date)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @events }
-    end
   end
 
-  # GET /events/1
-  # GET /events/1.xml
   def show
-    @event = current_user.events.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @event }
-    end
+    @points = Point.all - @event.points
   end
 
-  # GET /events/new
-  # GET /events/new.xml
   def new
     @event = current_user.events.build 
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @event }
-    end
   end
 
-  # GET /events/1/edit
   def edit
-    @event = current_user.events.find(params[:id])
   end
 
-  # POST /events
-  # POST /events.xml
   def create
     @event = current_user.events.build(params[:event])
-
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
-        format.xml  { render :xml => @event, :status => :created, :location => @event }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
-      end
+    if @event.save
+      redirect_to(@event, :notice => 'Event was successfully created.')
+    else
+      render :action => "new"
     end
   end
 
-  # PUT /events/1
-  # PUT /events/1.xml
   def update
-    @event = current_user.events.find(params[:id])
-
-    respond_to do |format|
-      if @event.update_attributes(params[:event])
-        format.html { redirect_to(@event, :notice => 'Event was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
-      end
+    if @event.update_attributes(params[:event])
+      redirect_to(@event, :notice => 'Event was successfully updated.')
+    else
+      render :action => "edit"
     end
   end
 
-  # DELETE /events/1
-  # DELETE /events/1.xml
   def destroy
-    @event = current_user.events.find(params[:id])
     @event.destroy
-    respond_to do |format|
-      format.html { redirect_to(events_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(events_url)
+  end
+
+  def add_point
+    event_point = @event.event_points.create(:point_id => params[:points])
+    event_point.create_qr_image(:host => request.host, :protocol => request.protocol) if event_point.valid?
+    redirect_to :action => :show
+  end
+
+  def delete_point
+    @event.event_points.destroy(params[:event_point_id])
+    redirect_to :action => :show
+  end
+
+  def visit_point
+    @unique = cookies[:visit] ? false : true
+    cookies[:visit] = true
+    @event_point = EventPoint.where(:id => params[:event_point_id]).first
+    @event_point.visit! if @event_point
+    @chance = rand(2) > 0
+    render :layout => 'mobile'
+  end
+
+  protected
+
+  def set_event
+    @event = current_user.events.find(params[:id]) if params[:id]
   end
 end

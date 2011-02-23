@@ -3,7 +3,6 @@
 <table>
   <tr>
     <th>Адрес</th>
-    <th>Кол-во сканирований</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,8 +11,6 @@
 <% @points.each do |point| %>
   <tr>
     <td><%= point.address %></td>
-    <td align='center'><%= point.visit_number %></td>
-    <td><%= link_to 'QR код', point.qr_url, :target => "_blank"%></td> 
     <td><%= link_to 'Редактировать', edit_point_path(point) %></td>
     <td><%= link_to '[x]', point, :confirm => 'Вы уверены?', :method => :delete %></td>
   </tr>
