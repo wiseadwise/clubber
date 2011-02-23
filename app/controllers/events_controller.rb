@@ -54,7 +54,7 @@ class EventsController < ApplicationController
     @unique = cookies[:visit] ? false : true
     cookies[:visit] = true
     @event_point = EventPoint.where(:id => params[:event_point_id]).first
-    @event_point.visit! if @event_point
+    @event_point.visit! if @event_point && @unique
     @chance = rand(2) > 0
     render :layout => 'mobile'
   end
