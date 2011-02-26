@@ -12,9 +12,9 @@
 <table>
 <% @event.event_points.each do |p| %>
   <tr>
-    <td><%= p.point.address %></td>
-    <td><%= p.visit_number %></td>
-    <td><%= link_to 'QR код', p.qr_url, :target => "_blank"%></td> 
+    <td style="width:100px;"><%= p.point.address %></td>
+    <td style="width:20px;"><%= p.visit_number %></td>
+    <td style="width:60px;"><%= link_to 'QR код', p.qr_url, :target => "_blank"%></td> 
     <td><%= link_to '[x]', delete_event_point_url(:event_point_id => p.id) %></td>
   </tr>
 <% end %>

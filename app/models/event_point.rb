@@ -6,22 +6,25 @@ class EventPoint < ActiveRecord::Base
   belongs_to :event
   belongs_to :point
 
+  validates :point_id, :uniqueness => { :scope => [:event_id] }
+
   after_destroy :delete_code
+  after_create  :create_qr_image
 
   def delete_code
     File.delete(self.qr_path) if File.exist?(self.qr_path)
   end
 
-  def create_qr_image(attributes)
-    QrImage.create_image(qr_path, qr_text(attributes), QR_SIZE, 10, 10)
+  def create_qr_image
+    QrImage.create_image(qr_path, qr_text, QR_SIZE, 10, 10)
   end
 
-  def qr_text(attributes)
-    "#{attributes[:protocol]}#{attributes[:host]}/p/v/#{self.id}"
+  def qr_text
+    "#{Clubber::Application.config.protocol}://#{Clubber::Application.config.domain}/p/v/#{self.id}"
   end
 
-  def qr_code(attributes)
-    QrImage.get_code(qr_text(attributes), QR_SIZE)
+  def qr_code
+    QrImage.get_code(qr_text, QR_SIZE)
   end
 
   def qr_url

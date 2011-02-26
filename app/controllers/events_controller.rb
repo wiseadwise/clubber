@@ -41,7 +41,6 @@ class EventsController < ApplicationController
 
   def add_point
     event_point = @event.event_points.create(:point_id => params[:points])
-    event_point.create_qr_image(:host => request.host, :protocol => request.protocol) if event_point.valid?
     redirect_to :action => :show
   end
 

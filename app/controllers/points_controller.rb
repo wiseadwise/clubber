@@ -1,18 +1,10 @@
 class PointsController < ApplicationController
   before_filter :authenticate_user!, :except => [:visit]
+  before_filter :set_points, :only => [:index, :create]
   # GET /points
   # GET /points.xml
   def index
-    @points = current_user.points
-    @points = @points.sort {|x,y| y.visit_number <=> x.visit_number } if params[:sort]
-  end
-
-  def show
-    @point = current_user.points.where(:id => params[:id]).first
-  end
-
-  def new
-    @point = current_user.points.build
+    @point  = Point.new 
   end
 
   def edit
@@ -24,7 +16,7 @@ class PointsController < ApplicationController
     if @point.save
       redirect_to(:action => :index)
     else
-      render :action => "new"
+      render :action => "index"
     end
   end
 
@@ -41,6 +33,12 @@ class PointsController < ApplicationController
     @point = current_user.points.where(:id => params[:id]).first
     @point.destroy
     redirect_to(points_url)
+  end
+
+  protected
+
+  def set_points
+    @points = current_user.points(true).sort_by(&:address)
   end
 
 end

@@ -1,7 +1,7 @@
 Clubber::Application.routes.draw do
   devise_for :users
 
-  resources :points
+  resources :points, :except => [:show, :new]
   resources :events
 
   match 'p/v/:event_point_id' => 'events#visit_point'

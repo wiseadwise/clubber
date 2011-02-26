@@ -4,4 +4,5 @@ log/*.log
 tmp/**/*
 config/environments/*
 public/qr/*
+public/qr
 *.swp

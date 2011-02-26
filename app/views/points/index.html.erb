@@ -1,22 +1,28 @@
 <h1>Рекламные адреса</h1>
-<%= link_to 'Сортировать', :sort => 'true' %>
 <table>
   <tr>
-    <th>Адрес</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <td style="width:150px;">
+      <table>
+        <tr>
+          <th>Адрес</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      <% @points.each do |p| %>
+        <tr>
+          <td style="width:90%;"><%= link_to p.address, edit_point_path(p) %></td>
+          <td><%= link_to '[x]', p, :confirm => 'Вы уверены?', :method => :delete %></td>
+        </tr>
+      <% end %>
+      </table>
+    </td>
+    <td>
+      <%= render 'form' %>
+    </td>
   </tr>
-
-<% @points.each do |point| %>
-  <tr>
-    <td><%= point.address %></td>
-    <td><%= link_to 'Редактировать', edit_point_path(point) %></td>
-    <td><%= link_to '[x]', point, :confirm => 'Вы уверены?', :method => :delete %></td>
-  </tr>
-<% end %>
 </table>
+
 
 <br />
 
-<%= link_to 'Добавить адрес', new_point_path %>

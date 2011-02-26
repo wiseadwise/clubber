@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20110219172557) do
     t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "message"
     t.integer  "user_id"
   end
 
