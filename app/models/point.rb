@@ -3,6 +3,6 @@ class Point < ActiveRecord::Base
 
   belongs_to :user
   has_many :events, :through => :events_points
-  has_many :event_points
+  has_many :event_points, :dependent => :destroy
 
 end
