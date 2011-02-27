@@ -16,7 +16,8 @@ class EventPoint < ActiveRecord::Base
   end
 
   def create_qr_image
-    QrImage.create_image(qr_path, qr_text, QR_SIZE, 10, 10)
+    #QrImage.create_image(qr_path, qr_text, QR_SIZE, 10, 10)
+    system "qrencode -s 10 -m 3 -o #{qr_path} '#{qr_text}'"
   end
 
   def qr_text

@@ -14,7 +14,11 @@
   <%= link_to 'Места', points_path %>
   <%= link_to 'Выйти', :destroy_user_session %>
 <% end %>
-<%= yield %>
-
+<table>
+  <tr>
+    <td><%= link_to '', %></td>
+    <td><%= yield %></td>
+  </tr>
+</table>
 </body>
 </html>
