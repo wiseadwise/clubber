@@ -2,23 +2,52 @@
 <html>
 <head>
   <title>Clubber</title>
-  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag 'style' %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<% if current_user %>
-  <%= link_to 'События', events_path %>
-  <%= link_to 'Места', points_path %>
-  <%= link_to 'Выйти', :destroy_user_session %>
-<% end %>
-<table>
-  <tr>
-    <td><%= link_to '', %></td>
-    <td><%= yield %></td>
-  </tr>
-</table>
+
+	<div id="content">
+
+		<div class="header">
+      <div class='searchform'>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+			<h1><a href="#">QR it</a></h1>
+		</div>
+
+		<div class="subheader">
+			<div class="subheader_right">
+        <div style="float:right">
+          <% if current_user %>
+            <%= current_user.email + ',' %>
+            <%= link_to 'События', events_path %>
+            <%= link_to 'Места', points_path %>
+            <%= link_to 'Выйти', :destroy_user_session %>
+          <% end %>
+        </div>
+     </div>
+     <!-- <div class="subheader_left"> <a href="#">Text!</a> </div> -->
+		</div>
+  						
+		<div class="right">
+		<!--	<div class="info"> <a class="info" href="#nogo">PROVIDING THE BEST CMS SOLUTONS</a> </div> <p>Text.</p> -->
+		  <%= yield %>	
+      <!-- <div class="right_left"> </div> <div class="right_right"> </div> -->
+		</div>
+		
+		<div class="left">
+      <h2>Блок инструментов</h2>
+			<p>Тут будет находиться блок с инструментами</p>
+			<p>Тут также может быть информация</p>						
+		</div>
+		
+		<div class="footer">
+			<p><a href="#">RSS Feed</a> | <a href="#">Contact</a></p>	
+			<p>© Copyright 2011, <a href="/">QRit</a> | WiseAdvise </p>
+		</div>
+	</div>
 </body>
 </html>
