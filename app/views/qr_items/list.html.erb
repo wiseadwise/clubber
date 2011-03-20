@@ -1,3 +1,6 @@
+<h2>
+  <%= params[:type].classify.constantize.model_name.human %>
+</h2>
 <table>
   <% @items.each do |i| %>
     <tr><td>

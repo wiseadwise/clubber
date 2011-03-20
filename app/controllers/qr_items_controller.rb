@@ -6,7 +6,11 @@ class QrItemsController < ApplicationController
     @item = klass.find_by_id(params[:id]) || klass.new 
     @item.user = current_user
     @item.prepare
-    @item.save_properties!(params[params[:type]]) if request.post?
+    if request.post?
+      @item.save_properties!(params[params[:type]]) 
+      redirect_to qr_items_list_url(:type => params[:type])
+      return true
+    end
     render :action => :form
   end
 
