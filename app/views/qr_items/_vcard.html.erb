@@ -1,0 +1,6 @@
+<% %w{first_name last_name email phone}.each do |attr_name| %>
+  <tr>
+    <td><%= form.label attr_name %></td>
+    <td><%= form.text_field attr_name.to_sym %></td>
+  </tr>
+<% end %>

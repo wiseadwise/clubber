@@ -1,0 +1,10 @@
+<table>
+  <%= form_for(@item,:as => @item.type.underscore.to_sym, :url => { :action => :item, :id => @item.id }, :html => {:method => :post}) do |f| %>
+    <tr>
+      <td><%= f.label :name %></td>
+      <td><%= f.text_field :name%></td>
+    </tr>
+    <%= render :partial => "#{@item.class.name.underscore}", :locals => {:form => f} %>
+    <tr><td><%= f.submit "Сохранить" %></td></tr>
+  <% end %>
+</table>

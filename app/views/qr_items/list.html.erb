@@ -1,0 +1,8 @@
+<table>
+  <% @items.each do |i| %>
+    <tr><td>
+      <%= link_to i.item_name, :action => :item, :id => i.id, :type => i.type.underscore %>
+    </td></tr>
+  <% end %>
+</table>
+<%= link_to "Добавить", qr_item_path(:type => params[:type]) %>

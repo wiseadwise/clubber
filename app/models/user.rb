@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
 
   has_many :points
   has_many :events
+
+  has_many :qr_items
+  has_many :vcards
+  has_many :sms_messages
 end

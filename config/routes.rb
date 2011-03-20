@@ -1,4 +1,5 @@
 Clubber::Application.routes.draw do
+
   devise_for :users
 
   resources :points, :except => [:show, :new]
@@ -7,6 +8,10 @@ Clubber::Application.routes.draw do
   match 'p/v/:event_point_id' => 'events#visit_point'
   delete 'events/delete_point/:id' => 'events#delete_point', :as => :delete_event_point
   put 'events/add_point/:id' => 'events#add_point', :as => :add_event_point
+
+  match "/qr_items/list(/:type)" => "qr_items#list", :as => :qr_items_list 
+  match "/qr_items/:type(/:id)" => "qr_items#item", :as => :qr_item
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

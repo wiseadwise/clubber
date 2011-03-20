@@ -33,15 +33,17 @@
 		</div>
   						
 		<div class="right">
-		<!--	<div class="info"> <a class="info" href="#nogo">PROVIDING THE BEST CMS SOLUTONS</a> </div> <p>Text.</p> -->
+		<!--	<div class="info"> <a class="info" href="#nogo"></a> </div> <p>Text.</p> -->
 		  <%= yield %>	
       <!-- <div class="right_left"> </div> <div class="right_right"> </div> -->
 		</div>
 		
 		<div class="left">
       <h2>Блок инструментов</h2>
-			<p>Тут будет находиться блок с инструментами</p>
-			<p>Тут также может быть информация</p>						
+      <p><%= link_to 'Визитки', qr_items_list_path(Vcard.name.underscore) %></p>
+      <p><%= link_to 'Смс',     qr_items_list_path(SmsMessage.name.underscore) %></p>
+      <p><%= link_to 'Текст',   qr_items_list_path(SimpleText.name.underscore) %></p>
+      <p><%= link_to 'Ссылки',  qr_items_list_path(WebUrl.name.underscore) %></p>
 		</div>
 		
 		<div class="footer">

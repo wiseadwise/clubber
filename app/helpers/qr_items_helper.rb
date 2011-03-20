@@ -1,0 +1,2 @@
+module QrItemsHelper
+end

@@ -189,17 +189,32 @@ ru:
       user: 'Пользователь' 
       event: 'Событие'
       point: 'Место'
+      vcard: 'Карта'
+      sms_message: 'Смс'
+      simple_text: 'Текст'
+      web_url: 'Ссылка'
     attributes:
       user:
         email: 'Логин'
         password: 'Пароль'
       point:
         address: "Адрес"
+      simple_text:
+        text: 'Текст'
+        name: 'Имя'
       event:
         name: "Название"
         description: 'Описание'
         event_date: 'Дата события'
-      # will translate User attribute "login" as "Handle"
+      web_url:
+        url: 'Ссылка'
+      vcard:
+        first_name: 'Имя'
+        last_name: 'Фамилия'
+        phone: 'Телефон'
+      sms_message:
+        message: 'Сообщение'
+        phone: 'Телефон'
     errors:
       models:
         event:

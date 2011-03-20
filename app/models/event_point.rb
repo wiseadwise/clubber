@@ -1,4 +1,5 @@
 require 'qr_image'
+
 class EventPoint < ActiveRecord::Base
   QR_IMAGES_DIR = File.join(Rails.root, 'public/qr')
   QR_SIZE = 5
