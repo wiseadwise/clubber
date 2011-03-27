@@ -152,11 +152,16 @@ ru:
     
 
   activerecord:
+    multi_models:
+      vcard: 'Визитки'
+      sms_message: 'Смс'
+      simple_text: 'Текстовые сообщения'
+      web_url: 'Ссылки'
     models:
       user: 'Пользователь' 
       event: 'Событие'
       point: 'Место'
-      vcard: 'Карта'
+      vcard: 'Визитка'
       sms_message: 'Смс'
       simple_text: 'Текст'
       web_url: 'Ссылка'
