@@ -8,12 +8,7 @@ class Vcard < QrItem
   end
 
   def qr_data
-    <<-DATA
-      BEGIN:VCARD
-        FN:#{first_name} #{last_name}
-        TEL:#{phone}
-        EMAIL:#{email}
-      END:VCARD
-    DATA
+    self.prepare
+    "BEGIN:VCARD\nVERSION:2.1\nFN:#{first_name};#{last_name}\nTEL:#{phone}\nEMAIL:#{email}\nEND:VCARD"
   end
 end
