@@ -6,7 +6,7 @@ class SmsMessage < QrItem
     name.blank? ? properties[:phone] : name
   end
 
-  def qr_data
+  def qr_text
     "SMSTO:#{phone}:#{message}"
   end
 
