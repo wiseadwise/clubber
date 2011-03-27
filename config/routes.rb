@@ -1,5 +1,8 @@
 Clubber::Application.routes.draw do
 
+  get "/about" => "home#about"
+  get "/contact" => "home#contact"
+
   devise_for :users
 
   #resources :points, :except => [:show, :new]
@@ -65,7 +68,7 @@ Clubber::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
 
-  root :to => "qr_items#list", :type => 'vcard'
+  root :to => "home#index"
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

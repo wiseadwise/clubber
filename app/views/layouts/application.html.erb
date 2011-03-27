@@ -20,6 +20,11 @@
 
 		<div class="subheader">
 			<div class="subheader_right">
+        <div style="float:left">
+          <%= link_to 'Главная', '/' %>
+          <%= link_to 'О проекте', '/about' %>
+          <%= link_to 'Контакты', '/contact' %>
+        </div>
         <div style="float:right">
           <% if current_user %>
             <%= current_user.email + ',' %>
@@ -37,18 +42,22 @@
 		  <%= yield %>	
       <!-- <div class="right_left"> </div> <div class="right_right"> </div> -->
 		</div>
-		
 		<div class="left">
-      <h2>Блок инструментов</h2>
-      <p><%= link_to 'Визитки', qr_items_list_path(Vcard.name.underscore) %></p>
-      <p><%= link_to 'Смс',     qr_items_list_path(SmsMessage.name.underscore) %></p>
-      <p><%= link_to 'Текст',   qr_items_list_path(SimpleText.name.underscore) %></p>
-      <p><%= link_to 'Ссылки',  qr_items_list_path(WebUrl.name.underscore) %></p>
+      <% if current_user %>
+        <h2>Блок инструментов</h2>
+        <p><%= link_to 'Визитки', qr_items_list_path(Vcard.name.underscore) %></p>
+        <p><%= link_to 'Смс',     qr_items_list_path(SmsMessage.name.underscore) %></p>
+        <p><%= link_to 'Текст',   qr_items_list_path(SimpleText.name.underscore) %></p>
+        <p><%= link_to 'Ссылки',  qr_items_list_path(WebUrl.name.underscore) %></p>
+      <% else %>
+        <p><%= link_to 'Войти', new_user_session_path %></p>
+        <p><%= link_to 'Зарегистрироваться', new_user_registration_path %></p>
+      <% end %>
 		</div>
 		
 		<div class="footer">
-			<p><a href="#">RSS Feed</a> | <a href="#">Contact</a></p>	
-			<p>© Copyright 2011, <a href="/">QRit</a> | WiseAdvise </p>
+			<p><a href="/">Главная</a> | <a href="/about">О проекте</a> | <a href="/contact">Контакты</a></p>	
+			<p>© Copyright 2011, <a href="/">QR it</a> | WiseAdvise </p>
 		</div>
 	</div>
 </body>
