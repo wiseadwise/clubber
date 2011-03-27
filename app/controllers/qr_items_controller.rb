@@ -1,5 +1,5 @@
 class QrItemsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:visit]
 
   def item
     @klass = params[:type] ? params[:type].classify.constantize : QrItem
