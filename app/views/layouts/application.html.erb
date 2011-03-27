@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Clubber</title>
+  <title>QR it</title>
   <%= stylesheet_link_tag 'style' %>
-  <%= javascript_include_tag :defaults %>
+  <%#= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -23,8 +23,8 @@
         <div style="float:right">
           <% if current_user %>
             <%= current_user.email + ',' %>
-            <%= link_to 'События', events_path %>
-            <%= link_to 'Места', points_path %>
+            <%#= link_to 'События', events_path %>
+            <%#= link_to 'Места', points_path %>
             <%= link_to 'Выйти', :destroy_user_session %>
           <% end %>
         </div>

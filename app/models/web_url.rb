@@ -5,7 +5,7 @@ class WebUrl < QrItem
     name.blank? ? properties[:url] : name
   end
 
-  def qr_data
+  def get_url
     (properties[:url].include?('://') ? '' : 'http://') + properties[:url]
   end
 end

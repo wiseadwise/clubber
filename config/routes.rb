@@ -2,13 +2,15 @@ Clubber::Application.routes.draw do
 
   devise_for :users
 
-  resources :points, :except => [:show, :new]
-  resources :events
+  #resources :points, :except => [:show, :new]
+  #resources :events
 
-  match 'p/v/:event_point_id' => 'events#visit_point'
-  delete 'events/delete_point/:id' => 'events#delete_point', :as => :delete_event_point
-  put 'events/add_point/:id' => 'events#add_point', :as => :add_event_point
+  #match 'p/v/:event_point_id' => 'events#visit_point'
+  #delete 'events/delete_point/:id' => 'events#delete_point', :as => :delete_event_point
+  #put 'events/add_point/:id' => 'events#add_point', :as => :add_event_point
 
+  match "/i/:id" => "qr_items#visit"
+  delete "/qr_items/destroy/:id" => "qr_items#destroy", :as => :destroy_qr_item
   match "/qr_items/list(/:type)" => "qr_items#list", :as => :qr_items_list 
   match "/qr_items/:type(/:id)" => "qr_items#item", :as => :qr_item
 
@@ -63,7 +65,7 @@ Clubber::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
 
-  root :to => "points#index"
+  root :to => "qr_items#list", :type => 'vcard'
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

@@ -1,11 +1,20 @@
 <h2>
-  <%= params[:type].classify.constantize.model_name.human %>
+  <%= @klass.model_name.human %>
 </h2>
-<table>
+<table cellspacing="10">
+  <tr style="text-align:left">
+    <th>Имя</th>
+    <th>Визиты</th>
+    <th></th>
+    <th></th>
+  </tr>
   <% @items.each do |i| %>
-    <tr><td>
-      <%= link_to i.item_name, :action => :item, :id => i.id, :type => i.type.underscore %>
-    </td></tr>
+    <tr>
+      <td><%= link_to i.item_name, :action => :item, :id => i.id, :type => i.type.underscore %></td>
+      <td style="text-align:center"><%= i.visit %></td>
+      <td style="width:60px;"><%= link_to 'QR код', i.qr_path, :target => "_blank"%></td> 
+      <td><%= link_to '[x]', destroy_qr_item_path(i.id), :method => :delete %></td>
+    </tr>
   <% end %>
 </table>
 <%= link_to "Добавить", qr_item_path(:type => params[:type]) %>

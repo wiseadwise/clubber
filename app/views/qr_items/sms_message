@@ -1,0 +1,11 @@
+<table>
+  <tr>
+    <td>Телефон: </td>
+    <td><%= @item.phone %></td>
+  </tr>
+  <tr>
+    <td>Сообщение: </td>
+    <td><%= @item.message %></td>
+  </tr>
+</table>
+
