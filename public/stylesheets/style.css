@@ -17,10 +17,15 @@ a:hover {
 	background-color: inherit;
 }
 
+.logo {
+  text-decoration:none;
+}
+
 h1 {
 	font: bold 1.8em Arial, Sans-Serif;
 	letter-spacing: -1px;
-	margin: 0;
+  margin-bottom:-8px;
+  margin-top:0px;
 	padding: 0;
 }
 
